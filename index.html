@@ -61,7 +61,7 @@
         /* ── HERO ──────────────────────────────────────────── */
         .hero {
             min-height: 100vh; position: relative;
-            background: url('Fundo.png') center center / cover no-repeat;
+            background: url('FUNDO1.png') center center / cover no-repeat;
             display: flex; align-items: center; justify-content: center;
         }
         .hero-overlay {
@@ -451,9 +451,13 @@ document.getElementById('contactForm').addEventListener('submit', async function
     msg.className = 'fmsg';
 
     try {
-        const res = await fetch('https://formspree.io/f/xwpbgwgv', {
+        const formData = new FormData(this);
+        formData.append('_subject', 'Nova solicitação de demonstração — AgroCore ERP');
+        formData.append('_captcha', 'false');
+        formData.append('_template', 'table');
+        const res = await fetch('https://formsubmit.co/ajax/agrosoftsistemas@gmail.com', {
             method: 'POST',
-            body: new FormData(this),
+            body: formData,
             headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
