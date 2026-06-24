@@ -7,6 +7,7 @@
     <meta name="description" content="AgroCore ERP: sistema completo para corretoras de grãos e produtores rurais. Contratos, embarques, comissões e assistente de IA integrado.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -160,8 +161,10 @@
         .feat-card:hover::before { left: 200%; }
         .feat-icon {
             width: 52px; height: 52px; border-radius: 14px; background: rgba(46,125,50,.2);
-            display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 18px;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 18px;
+            border: 1px solid rgba(76,175,80,.25);
         }
+        .feat-icon svg { width: 26px; height: 26px; stroke: #4caf50; stroke-width: 1.75; fill: none; }
         .feat-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #fff; letter-spacing: .3px; }
         .feat-card p  { font-size: 14px; color: #94a3b8; line-height: 1.65; }
 
@@ -301,32 +304,32 @@
         </div>
         <div class="feat-grid">
             <div class="feat-card">
-                <div class="feat-icon">📄</div>
+                <div class="feat-icon"><i data-lucide="file-text"></i></div>
                 <h3>Contratos de Grãos</h3>
                 <p>Gerencie contratos de intermediação, compra e venda e prestação de serviços com controle completo de comissões e repasses.</p>
             </div>
             <div class="feat-card">
-                <div class="feat-icon">🚛</div>
+                <div class="feat-icon"><i data-lucide="truck"></i></div>
                 <h3>Embarques e Entregas</h3>
                 <p>Controle de romaneios, cargas, motoristas e status em tempo real. Histórico completo com notas de peso e qualidade.</p>
             </div>
             <div class="feat-card">
-                <div class="feat-icon">📊</div>
+                <div class="feat-icon"><i data-lucide="bar-chart-2"></i></div>
                 <h3>Dashboard Inteligente</h3>
                 <p>Cotações CEPEA-ESALQ, CBOT e câmbio atualizados automaticamente. Gráficos de performance e indicadores do seu negócio.</p>
             </div>
             <div class="feat-card">
-                <div class="feat-icon">🌾</div>
+                <div class="feat-icon"><i data-lucide="brain-circuit"></i></div>
                 <h3>AgroAssist — IA</h3>
                 <p>Assistente de inteligência artificial especializado em agronegócio. Cotações, cálculos de comissão, frete, legislação e muito mais.</p>
             </div>
             <div class="feat-card">
-                <div class="feat-icon">💰</div>
+                <div class="feat-icon"><i data-lucide="banknote"></i></div>
                 <h3>Financeiro e Comissões</h3>
                 <p>Contas a receber, relatórios em PDF com dados de comprador e fornecedor, e fluxo de caixa operacional completo.</p>
             </div>
             <div class="feat-card">
-                <div class="feat-icon">⚖️</div>
+                <div class="feat-icon"><i data-lucide="scale"></i></div>
                 <h3>Módulo Jurídico</h3>
                 <p>Geração de contratos e documentos padronizados para o agronegócio, com modelos editáveis e exportação em PDF.</p>
             </div>
@@ -434,6 +437,9 @@
 </footer>
 
 <script>
+// ── Lucide icons ───────────────────────────────────────
+lucide.createIcons();
+
 // ── Canvas de partículas — Seção Recursos ─────────────
 (function() {
     const canvas = document.getElementById('recursos-canvas');
