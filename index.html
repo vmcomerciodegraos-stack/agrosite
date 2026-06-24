@@ -124,22 +124,28 @@
         .stat .n { font-size: 38px; font-weight: 900; line-height: 1; }
         .stat .l { font-size: 13px; opacity: .75; margin-top: 6px; }
 
-        /* ── FEATURES ─────────────────────────────────────── */
-        .recursos-section {
+        /* ── SHARED DARK SECTION ──────────────────────────── */
+        .dark-section {
             position: relative;
             background: linear-gradient(135deg, #0f172a 0%, #0a2918 100%);
             overflow: hidden;
         }
-        #recursos-canvas {
+        .dark-section.invert {
+            background: linear-gradient(135deg, #0a2918 0%, #0f172a 100%);
+        }
+        .section-canvas {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 0; opacity: 0.6; pointer-events: none;
         }
-        #recursos { padding: 88px 48px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .section-inner { position: relative; z-index: 1; }
         .sec-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; }
-        .recursos-section .sec-label { color: #4caf50; }
+        .dark-section .sec-label { color: #4caf50; }
         .sec-title { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; margin-top: 8px; }
-        .recursos-section .sec-title { color: #ffffff; letter-spacing: -0.5px; }
+        .dark-section .sec-title { color: #fff; letter-spacing: -0.5px; }
         .sec-head { margin-bottom: 52px; }
+
+        /* ── FEATURES (RECURSOS) ──────────────────────────── */
+        #recursos { padding: 88px 48px; max-width: 1200px; margin: 0 auto; }
 
         .feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
         .feat-card {
@@ -168,6 +174,21 @@
         .feat-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #fff; letter-spacing: .3px; }
         .feat-card p  { font-size: 14px; color: #94a3b8; line-height: 1.65; }
 
+        /* ── SOBRE ────────────────────────────────────────── */
+        #sobre { padding: 88px 48px; }
+        .sobre-glass {
+            max-width: 780px; margin: 0 auto; text-align: center;
+            background: rgba(15,23,42,.6);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,.08);
+            border-top: 1px solid rgba(255,255,255,.15);
+            border-left: 1px solid rgba(255,255,255,.15);
+            border-radius: 24px; padding: 52px 48px;
+            box-shadow: 0 8px 32px rgba(0,0,0,.4);
+        }
+        .sobre-glass .sec-title { margin-bottom: 20px; }
+        .sobre-glass > p { font-size: 16px; color: #94a3b8; line-height: 1.85; }
+
         /* ── ACESSO ───────────────────────────────────────── */
         #acesso {
             background: var(--dark);
@@ -179,32 +200,45 @@
         #acesso small { display: block; color: rgba(255,255,255,.25); font-size: 12px; margin-top: 18px; }
 
         /* ── CONTATO ──────────────────────────────────────── */
-        #contato { background: var(--light); }
+        #contato { background: transparent; }
         .contact-wrap {
             max-width: 1180px; margin: 0 auto; padding: 88px 48px;
             display: grid; grid-template-columns: 1fr 1.5fr; gap: 72px; align-items: start;
         }
-
-        .cinfo h2 { font-size: clamp(26px,3vw,36px); font-weight: 800; margin-bottom: 14px; }
-        .cinfo > p { font-size: 15px; color: var(--gray); line-height: 1.75; margin-bottom: 36px; }
+        .dark-section .sec-label { color: #4caf50; }
+        .cinfo h2 { font-size: clamp(26px,3vw,36px); font-weight: 800; margin-bottom: 14px; color: #fff; }
+        .cinfo > p { font-size: 15px; color: #94a3b8; line-height: 1.75; margin-bottom: 36px; }
         .citem { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
-        .citem .ci { width: 44px; height: 44px; background: var(--green-l); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
-        .citem strong { display: block; font-size: 13px; font-weight: 700; }
-        .citem span   { font-size: 13px; color: var(--gray); }
-
-        .cform { background: #fff; border-radius: 22px; padding: 42px; box-shadow: 0 4px 48px rgba(0,0,0,.06); border: 1px solid #e2e8f0; }
-        .cform h3 { font-size: 22px; font-weight: 800; margin-bottom: 28px; }
+        .citem .ci {
+            width: 44px; height: 44px; background: rgba(46,125,50,.2);
+            border: 1px solid rgba(76,175,80,.25); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .citem .ci svg { width: 22px; height: 22px; stroke: #4caf50; stroke-width: 1.75; fill: none; }
+        .citem strong { display: block; font-size: 13px; font-weight: 700; color: #fff; }
+        .citem span   { font-size: 13px; color: #94a3b8; }
+        .cform {
+            background: rgba(15,23,42,.7);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,.08);
+            border-top: 1px solid rgba(255,255,255,.15);
+            border-left: 1px solid rgba(255,255,255,.15);
+            border-radius: 22px; padding: 42px;
+            box-shadow: 0 8px 32px rgba(0,0,0,.4);
+        }
+        .cform h3 { font-size: 22px; font-weight: 800; margin-bottom: 28px; color: #fff; }
         .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .fg { margin-bottom: 18px; }
-        .fg label { display: block; font-size: 11.5px; font-weight: 700; color: var(--dark); margin-bottom: 7px; text-transform: uppercase; letter-spacing: .6px; }
-        .fg label .req { color: var(--green); }
+        .fg label { display: block; font-size: 11.5px; font-weight: 700; color: #94a3b8; margin-bottom: 7px; text-transform: uppercase; letter-spacing: .6px; }
+        .fg label .req { color: #4caf50; }
         .fg input, .fg textarea {
-            width: 100%; padding: 12px 15px; border: 1.5px solid #e2e8f0; border-radius: 10px;
-            font-size: 14px; font-family: inherit; color: var(--dark); background: var(--light);
+            width: 100%; padding: 12px 15px; border: 1.5px solid rgba(255,255,255,.1); border-radius: 10px;
+            font-size: 14px; font-family: inherit; color: #fff; background: rgba(15,23,42,.8);
             transition: border-color .2s, box-shadow .2s; outline: none;
         }
+        .fg input::placeholder, .fg textarea::placeholder { color: rgba(255,255,255,.3); }
         .fg input:focus, .fg textarea:focus {
-            border-color: var(--green); box-shadow: 0 0 0 3px rgba(22,163,74,.12); background: #fff;
+            border-color: #4caf50; box-shadow: 0 0 0 3px rgba(76,175,80,.15); background: rgba(15,23,42,.95);
         }
         .fg textarea { resize: vertical; min-height: 88px; }
         .btn-send {
@@ -215,8 +249,8 @@
         .btn-send:hover { background: var(--green-d); transform: translateY(-1px); }
         .btn-send:disabled { opacity: .55; cursor: not-allowed; transform: none; }
         .fmsg { margin-top: 14px; padding: 12px 16px; border-radius: 10px; font-size: 13px; font-weight: 600; display: none; }
-        .fmsg.ok  { background: #dcfce7; color: #166534; display: block; }
-        .fmsg.err { background: #fee2e2; color: #991b1b; display: block; }
+        .fmsg.ok  { background: rgba(22,101,52,.3); color: #4ade80; border: 1px solid rgba(74,222,128,.3); display: block; }
+        .fmsg.err { background: rgba(127,29,29,.3); color: #f87171; border: 1px solid rgba(248,113,113,.3); display: block; }
 
         /* ── FOOTER ──────────────────────────────────────── */
         footer { background: #020c05; color: rgba(255,255,255,.5); padding: 44px 48px; text-align: center; }
@@ -233,14 +267,15 @@
         @media (max-width: 640px) {
             nav { padding: 16px 20px; }
             nav.scrolled { padding: 12px 20px; }
-            .nav-links { display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 260px; background: #fff; flex-direction: column; align-items: flex-start; padding: 80px 28px 28px; gap: 20px; box-shadow: -4px 0 30px rgba(0,0,0,.15); transform: translateX(100%); transition: transform .3s; }
+            .nav-links { display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 260px; background: #1e293b; flex-direction: column; align-items: flex-start; padding: 80px 28px 28px; gap: 20px; box-shadow: -4px 0 30px rgba(0,0,0,.4); transform: translateX(100%); transition: transform .3s; }
             .nav-links.open { display: flex; transform: translateX(0); }
-            .nav-links a { color: var(--dark) !important; font-size: 16px; }
+            .nav-links a { color: #fff !important; font-size: 16px; }
             .btn-access { width: 100%; text-align: center; }
             .hamburger { display: flex; }
             .feat-grid  { grid-template-columns: 1fr; }
             .frow { grid-template-columns: 1fr; }
-            #recursos, .contact-wrap, #acesso { padding-left: 20px; padding-right: 20px; }
+            #recursos, .contact-wrap, #acesso, #sobre { padding-left: 20px; padding-right: 20px; }
+            .sobre-glass { padding: 36px 24px; }
             .cform { padding: 28px 20px; }
             .stats-bar { padding: 32px 20px; grid-template-columns: repeat(2,1fr); }
             footer { padding: 40px 20px; }
@@ -295,57 +330,61 @@
 </div>
 
 <!-- ══ RECURSOS ══ -->
-<section class="recursos-section">
-    <canvas id="recursos-canvas"></canvas>
-    <div id="recursos">
-        <div class="sec-head">
-            <div class="sec-label">Funcionalidades</div>
-            <h2 class="sec-title">Tudo que sua operação precisa</h2>
-        </div>
-        <div class="feat-grid">
-            <div class="feat-card">
-                <div class="feat-icon"><i data-lucide="file-text"></i></div>
-                <h3>Contratos de Grãos</h3>
-                <p>Gerencie contratos de intermediação, compra e venda e prestação de serviços com controle completo de comissões e repasses.</p>
+<section class="dark-section">
+    <canvas class="section-canvas" id="recursos-canvas"></canvas>
+    <div class="section-inner">
+        <div id="recursos">
+            <div class="sec-head">
+                <div class="sec-label">Funcionalidades</div>
+                <h2 class="sec-title">Tudo que sua operação precisa</h2>
             </div>
-            <div class="feat-card">
-                <div class="feat-icon"><i data-lucide="truck"></i></div>
-                <h3>Embarques e Entregas</h3>
-                <p>Controle de romaneios, cargas, motoristas e status em tempo real. Histórico completo com notas de peso e qualidade.</p>
-            </div>
-            <div class="feat-card">
-                <div class="feat-icon"><i data-lucide="bar-chart-2"></i></div>
-                <h3>Dashboard Inteligente</h3>
-                <p>Cotações CEPEA-ESALQ, CBOT e câmbio atualizados automaticamente. Gráficos de performance e indicadores do seu negócio.</p>
-            </div>
-            <div class="feat-card">
-                <div class="feat-icon"><i data-lucide="brain-circuit"></i></div>
-                <h3>AgroAssist — IA</h3>
-                <p>Assistente de inteligência artificial especializado em agronegócio. Cotações, cálculos de comissão, frete, legislação e muito mais.</p>
-            </div>
-            <div class="feat-card">
-                <div class="feat-icon"><i data-lucide="banknote"></i></div>
-                <h3>Financeiro e Comissões</h3>
-                <p>Contas a receber, relatórios em PDF com dados de comprador e fornecedor, e fluxo de caixa operacional completo.</p>
-            </div>
-            <div class="feat-card">
-                <div class="feat-icon"><i data-lucide="scale"></i></div>
-                <h3>Módulo Jurídico</h3>
-                <p>Geração de contratos e documentos padronizados para o agronegócio, com modelos editáveis e exportação em PDF.</p>
+            <div class="feat-grid">
+                <div class="feat-card">
+                    <div class="feat-icon"><i data-lucide="file-text"></i></div>
+                    <h3>Contratos de Grãos</h3>
+                    <p>Gerencie contratos de intermediação, compra e venda e prestação de serviços com controle completo de comissões e repasses.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i data-lucide="truck"></i></div>
+                    <h3>Embarques e Entregas</h3>
+                    <p>Controle de romaneios, cargas, motoristas e status em tempo real. Histórico completo com notas de peso e qualidade.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i data-lucide="bar-chart-2"></i></div>
+                    <h3>Dashboard Inteligente</h3>
+                    <p>Cotações CEPEA-ESALQ, CBOT e câmbio atualizados automaticamente. Gráficos de performance e indicadores do seu negócio.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i data-lucide="brain-circuit"></i></div>
+                    <h3>AgroAssist — IA</h3>
+                    <p>Assistente de inteligência artificial especializado em agronegócio. Cotações, cálculos de comissão, frete, legislação e muito mais.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i data-lucide="banknote"></i></div>
+                    <h3>Financeiro e Comissões</h3>
+                    <p>Contas a receber, relatórios em PDF com dados de comprador e fornecedor, e fluxo de caixa operacional completo.</p>
+                </div>
+                <div class="feat-card">
+                    <div class="feat-icon"><i data-lucide="scale"></i></div>
+                    <h3>Módulo Jurídico</h3>
+                    <p>Geração de contratos e documentos padronizados para o agronegócio, com modelos editáveis e exportação em PDF.</p>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- ══ SOBRE ══ -->
-<section id="sobre" style="background:#f1fdf4; padding: 72px 48px;">
-    <div style="max-width:760px; margin:0 auto; text-align:center;">
-        <div class="sec-label">Sobre o AgroCore</div>
-        <h2 class="sec-title" style="margin-bottom:20px;">Tecnologia feita para quem vive o campo</h2>
-        <p style="font-size:16px; color:#475569; line-height:1.85;">
-            O AgroCore ERP nasceu da necessidade real de corretoras e produtores que precisavam de um sistema robusto, simples e completo para gerenciar a complexidade do agronegócio brasileiro.
-            Com integração de Inteligência Artificial e dados de mercado em tempo real, o AgroCore transforma a gestão do seu negócio rural.
-        </p>
+<section class="dark-section invert" id="sobre">
+    <canvas class="section-canvas" id="sobre-canvas"></canvas>
+    <div class="section-inner">
+        <div id="sobre-inner">
+            <div class="sobre-glass">
+                <div class="sec-label">Sobre o AgroCore</div>
+                <h2 class="sec-title">Tecnologia feita para quem vive o campo</h2>
+                <p>O AgroCore ERP nasceu da necessidade real de corretoras e produtores que precisavam de um sistema robusto, simples e completo para gerenciar a complexidade do agronegócio brasileiro. Com integração de Inteligência Artificial e dados de mercado em tempo real, o AgroCore transforma a gestão do seu negócio rural.</p>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -359,71 +398,74 @@
 </section>
 
 <!-- ══ CONTATO ══ -->
-<section id="contato">
-    <div class="contact-wrap">
-        <div class="cinfo">
-            <div class="sec-label">Fale conosco</div>
-            <h2>Entre em contato</h2>
-            <p>Preencha o formulário e nossa equipe entrará em contato para apresentar o AgroCore ERP e agendar uma demonstração personalizada.</p>
-            <div class="citem">
-                <div class="ci">📧</div>
-                <div>
-                    <strong>E-mail</strong>
-                    <span>agrosoftsistemas@gmail.com</span>
+<section class="dark-section" id="contato">
+    <canvas class="section-canvas" id="contato-canvas"></canvas>
+    <div class="section-inner">
+        <div class="contact-wrap">
+            <div class="cinfo">
+                <div class="sec-label">Fale conosco</div>
+                <h2>Entre em contato</h2>
+                <p>Preencha o formulário e nossa equipe entrará em contato para apresentar o AgroCore ERP e agendar uma demonstração personalizada.</p>
+                <div class="citem">
+                    <div class="ci"><i data-lucide="mail"></i></div>
+                    <div>
+                        <strong>E-mail</strong>
+                        <span>agrosoftsistemas@gmail.com</span>
+                    </div>
+                </div>
+                <div class="citem">
+                    <div class="ci"><i data-lucide="message-circle"></i></div>
+                    <div>
+                        <strong>WhatsApp</strong>
+                        <span>Informado no formulário</span>
+                    </div>
+                </div>
+                <div class="citem">
+                    <div class="ci"><i data-lucide="clock"></i></div>
+                    <div>
+                        <strong>Atendimento</strong>
+                        <span>Segunda a Sexta, 8h às 18h</span>
+                    </div>
                 </div>
             </div>
-            <div class="citem">
-                <div class="ci">💬</div>
-                <div>
-                    <strong>WhatsApp</strong>
-                    <span>Informado no formulário</span>
-                </div>
-            </div>
-            <div class="citem">
-                <div class="ci">⏰</div>
-                <div>
-                    <strong>Atendimento</strong>
-                    <span>Segunda a Sexta, 8h às 18h</span>
-                </div>
-            </div>
-        </div>
 
-        <div class="cform">
-            <h3>Solicitar Demonstração</h3>
-            <form id="contactForm">
-                <div class="frow">
-                    <div class="fg">
-                        <label>Nome da Empresa <span class="req">*</span></label>
-                        <input type="text" name="empresa" placeholder="Razão social" required>
+            <div class="cform">
+                <h3>Solicitar Demonstração</h3>
+                <form id="contactForm">
+                    <div class="frow">
+                        <div class="fg">
+                            <label>Nome da Empresa <span class="req">*</span></label>
+                            <input type="text" name="empresa" placeholder="Razão social" required>
+                        </div>
+                        <div class="fg">
+                            <label>CNPJ / CPF <span class="req">*</span></label>
+                            <input type="text" name="cnpj" id="inCnpj" placeholder="00.000.000/0001-00" required>
+                        </div>
                     </div>
                     <div class="fg">
-                        <label>CNPJ / CPF <span class="req">*</span></label>
-                        <input type="text" name="cnpj" id="inCnpj" placeholder="00.000.000/0001-00" required>
+                        <label>Nome do Responsável <span class="req">*</span></label>
+                        <input type="text" name="responsavel" placeholder="Nome completo" required>
                     </div>
-                </div>
-                <div class="fg">
-                    <label>Nome do Responsável <span class="req">*</span></label>
-                    <input type="text" name="responsavel" placeholder="Nome completo" required>
-                </div>
-                <div class="frow">
+                    <div class="frow">
+                        <div class="fg">
+                            <label>WhatsApp <span class="req">*</span></label>
+                            <input type="tel" name="whatsapp" id="inPhone" placeholder="(00) 00000-0000" required>
+                        </div>
+                        <div class="fg">
+                            <label>E-mail <span class="req">*</span></label>
+                            <input type="email" name="email" placeholder="contato@empresa.com.br" required>
+                        </div>
+                    </div>
                     <div class="fg">
-                        <label>WhatsApp <span class="req">*</span></label>
-                        <input type="tel" name="whatsapp" id="inPhone" placeholder="(00) 00000-0000" required>
+                        <label>Mensagem</label>
+                        <textarea name="mensagem" placeholder="Conte sobre sua operação ou dúvidas..."></textarea>
                     </div>
-                    <div class="fg">
-                        <label>E-mail <span class="req">*</span></label>
-                        <input type="email" name="email" placeholder="contato@empresa.com.br" required>
-                    </div>
-                </div>
-                <div class="fg">
-                    <label>Mensagem</label>
-                    <textarea name="mensagem" placeholder="Conte sobre sua operação ou dúvidas..."></textarea>
-                </div>
-                <button type="submit" class="btn-send" id="btnSend">
-                    ✉️ <span id="btnTxt">Enviar Solicitação</span>
-                </button>
-                <div class="fmsg" id="fmsg"></div>
-            </form>
+                    <button type="submit" class="btn-send" id="btnSend">
+                        ✉️ <span id="btnTxt">Enviar Solicitação</span>
+                    </button>
+                    <div class="fmsg" id="fmsg"></div>
+                </form>
+            </div>
         </div>
     </div>
 </section>
@@ -440,24 +482,24 @@
 // ── Lucide icons ───────────────────────────────────────
 lucide.createIcons();
 
-// ── Canvas de partículas — Seção Recursos ─────────────
-(function() {
-    const canvas = document.getElementById('recursos-canvas');
+// ── Canvas de partículas (reutilizável) ────────────────
+function initParticleCanvas(canvasId, count, connDist) {
+    const canvas = document.getElementById(canvasId);
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    const PARTICLE_COUNT = 60, CONN_DIST = 130;
     let W, H, particles;
 
     function resize() {
         const rect = canvas.parentElement.getBoundingClientRect();
         W = canvas.width  = rect.width;
         H = canvas.height = rect.height;
+        if (particles) particles.forEach(p => { p.x = Math.random()*W; p.y = Math.random()*H; });
     }
 
     class Particle {
         constructor() {
-            this.x  = Math.random() * W;
-            this.y  = Math.random() * H;
+            this.x  = Math.random() * (W || 800);
+            this.y  = Math.random() * (H || 600);
             this.vx = (Math.random() - .5) * .5;
             this.vy = (Math.random() - .5) * .5;
             this.r  = Math.random() * 1.5 + 1;
@@ -477,7 +519,7 @@ lucide.createIcons();
 
     function init() {
         resize();
-        particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle());
+        particles = Array.from({ length: count }, () => new Particle());
     }
 
     function animate() {
@@ -487,9 +529,9 @@ lucide.createIcons();
             for (let j = i + 1; j < particles.length; j++) {
                 const dx = p.x - particles[j].x, dy = p.y - particles[j].y;
                 const d  = Math.sqrt(dx*dx + dy*dy);
-                if (d < CONN_DIST) {
+                if (d < connDist) {
                     ctx.beginPath();
-                    ctx.strokeStyle = `rgba(76,175,80,${(1 - d/CONN_DIST) * .45})`;
+                    ctx.strokeStyle = `rgba(76,175,80,${(1 - d/connDist) * .45})`;
                     ctx.lineWidth = .5;
                     ctx.moveTo(p.x, p.y);
                     ctx.lineTo(particles[j].x, particles[j].y);
@@ -503,7 +545,11 @@ lucide.createIcons();
     window.addEventListener('resize', init);
     init();
     animate();
-})();
+}
+
+initParticleCanvas('recursos-canvas', 60, 130);
+initParticleCanvas('sobre-canvas',    40, 120);
+initParticleCanvas('contato-canvas',  50, 130);
 
 // ── Menu mobile ────────────────────────────────────────
 function toggleMenu() {
@@ -536,7 +582,7 @@ document.getElementById('inPhone').addEventListener('input', function() {
     this.value = v;
 });
 
-// ── Formulário via Formspree ───────────────────────────
+// ── Formulário via FormSubmit ──────────────────────────
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('btnSend');
