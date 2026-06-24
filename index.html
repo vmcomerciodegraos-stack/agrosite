@@ -124,23 +124,46 @@
         .stat .l { font-size: 13px; opacity: .75; margin-top: 6px; }
 
         /* ── FEATURES ─────────────────────────────────────── */
-        #recursos { padding: 88px 48px; max-width: 1200px; margin: 0 auto; }
-        .sec-label { color: var(--green); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; }
-        .sec-title { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; margin-top: 8px; color: var(--dark); }
+        .recursos-section {
+            position: relative;
+            background: linear-gradient(135deg, #0f172a 0%, #0a2918 100%);
+            overflow: hidden;
+        }
+        #recursos-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; opacity: 0.6; pointer-events: none;
+        }
+        #recursos { padding: 88px 48px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .sec-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; }
+        .recursos-section .sec-label { color: #4caf50; }
+        .sec-title { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; margin-top: 8px; }
+        .recursos-section .sec-title { color: #ffffff; letter-spacing: -0.5px; }
         .sec-head { margin-bottom: 52px; }
 
         .feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
         .feat-card {
-            background: #fff; border: 1px solid #e2e8f0; border-radius: 18px;
-            padding: 32px; transition: transform .2s, box-shadow .2s;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,.08);
+            border-top: 1px solid rgba(255,255,255,.15);
+            border-left: 1px solid rgba(255,255,255,.15);
+            border-radius: 18px; padding: 32px;
+            transition: transform .3s cubic-bezier(.175,.885,.32,1.275), box-shadow .3s ease, border-color .3s ease;
+            position: relative; overflow: hidden;
         }
-        .feat-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,.07); }
+        .feat-card::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,.04), transparent);
+            transform: skewX(-20deg); transition: left .7s ease;
+        }
+        .feat-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,.5); border-color: rgba(255,255,255,.2); }
+        .feat-card:hover::before { left: 200%; }
         .feat-icon {
-            width: 52px; height: 52px; border-radius: 14px; background: var(--green-l);
+            width: 52px; height: 52px; border-radius: 14px; background: rgba(46,125,50,.2);
             display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 18px;
         }
-        .feat-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
-        .feat-card p  { font-size: 14px; color: var(--gray); line-height: 1.65; }
+        .feat-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; color: #fff; letter-spacing: .3px; }
+        .feat-card p  { font-size: 14px; color: #94a3b8; line-height: 1.65; }
 
         /* ── ACESSO ───────────────────────────────────────── */
         #acesso {
@@ -269,7 +292,8 @@
 </div>
 
 <!-- ══ RECURSOS ══ -->
-<section>
+<section class="recursos-section">
+    <canvas id="recursos-canvas"></canvas>
     <div id="recursos">
         <div class="sec-head">
             <div class="sec-label">Funcionalidades</div>
@@ -410,6 +434,71 @@
 </footer>
 
 <script>
+// ── Canvas de partículas — Seção Recursos ─────────────
+(function() {
+    const canvas = document.getElementById('recursos-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const PARTICLE_COUNT = 60, CONN_DIST = 130;
+    let W, H, particles;
+
+    function resize() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        W = canvas.width  = rect.width;
+        H = canvas.height = rect.height;
+    }
+
+    class Particle {
+        constructor() {
+            this.x  = Math.random() * W;
+            this.y  = Math.random() * H;
+            this.vx = (Math.random() - .5) * .5;
+            this.vy = (Math.random() - .5) * .5;
+            this.r  = Math.random() * 1.5 + 1;
+        }
+        update() {
+            this.x += this.vx; this.y += this.vy;
+            if (this.x < 0 || this.x > W) this.vx *= -1;
+            if (this.y < 0 || this.y > H) this.vy *= -1;
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(76,175,80,.55)';
+            ctx.fill();
+        }
+    }
+
+    function init() {
+        resize();
+        particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach((p, i) => {
+            p.update(); p.draw();
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = p.x - particles[j].x, dy = p.y - particles[j].y;
+                const d  = Math.sqrt(dx*dx + dy*dy);
+                if (d < CONN_DIST) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(76,175,80,${(1 - d/CONN_DIST) * .45})`;
+                    ctx.lineWidth = .5;
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        });
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', init);
+    init();
+    animate();
+})();
+
 // ── Menu mobile ────────────────────────────────────────
 function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('open');
