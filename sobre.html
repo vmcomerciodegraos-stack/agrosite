@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre — AgroCore ERP | Agrosoft Tecnologia</title>
+    <meta name="description" content="Conheça a Agrosoft Tecnologia, o AgroCore ERP e como protegemos os dados dos nossos clientes. Endereço, e-mail e horário de atendimento.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --green:   #16a34a;
+            --green-d: #15803d;
+            --green-l: #dcfce7;
+            --dark:    #0f172a;
+            --gray:    #64748b;
+            --light:   #f8fafc;
+            --white:   #ffffff;
+            --muted:   #94a3b8;
+            --accent:  #4caf50;
+        }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+        body { font-family: 'Inter', sans-serif; color: var(--dark); background: #0b1a14; overflow-x: hidden; }
+
+        /* ── NAVBAR (igual à página inicial) ───────────────── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 18px 48px;
+            display: flex; align-items: center; justify-content: space-between;
+            transition: background .3s, box-shadow .3s, padding .3s;
+        }
+        nav.scrolled {
+            background: rgba(255,255,255,.97);
+            box-shadow: 0 2px 24px rgba(0,0,0,.08);
+            padding: 12px 48px;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo img { height: 38px; border-radius: 10px; object-fit: contain; }
+        .nav-logo .brand { font-size: 18px; font-weight: 800; color: #fff; transition: color .3s; }
+        nav.scrolled .nav-logo .brand { color: var(--green-d); }
+        .nav-links { display: flex; align-items: center; gap: 28px; }
+        .nav-links a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,.85); text-decoration: none; transition: color .2s; }
+        nav.scrolled .nav-links a { color: var(--dark); }
+        .nav-links a:hover { color: var(--green); }
+        .nav-links a[aria-current="page"] { color: #4ade80; font-weight: 700; }
+        nav.scrolled .nav-links a[aria-current="page"] { color: var(--green-d); }
+        .btn-access {
+            background: var(--green); color: #fff !important;
+            padding: 10px 22px; border-radius: 8px;
+            font-size: 14px; font-weight: 700; text-decoration: none;
+            transition: background .2s, transform .15s, box-shadow .2s;
+            box-shadow: 0 2px 12px rgba(22,163,74,.3);
+        }
+        .btn-access:hover { background: var(--green-d); transform: translateY(-1px); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: 0; padding: 6px; }
+        .hamburger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: background .3s; }
+        nav.scrolled .hamburger span { background: var(--dark); }
+
+        /* ── CABEÇALHO DA PÁGINA ───────────────────────────── */
+        .page-hero {
+            position: relative; min-height: 440px;
+            background: #0a2918 url('FUNDO1.png') center center / cover no-repeat;
+            display: flex; align-items: flex-end;
+        }
+        .page-hero .overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(5,20,10,.88) 0%, rgba(10,20,40,.72) 60%, rgba(5,20,10,.6) 100%);
+        }
+        .page-hero .content { position: relative; z-index: 2; width: 100%; max-width: 1180px; margin: 0 auto; padding: 140px 48px 56px; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(22,163,74,.22); border: 1px solid rgba(22,163,74,.45);
+            color: #86efac; padding: 7px 18px; border-radius: 100px;
+            font-size: 13px; font-weight: 500; margin-bottom: 22px;
+            backdrop-filter: blur(8px);
+        }
+        .page-hero h1 { font-size: clamp(32px, 5vw, 58px); font-weight: 900; color: #fff; line-height: 1.08; letter-spacing: -1.2px; margin-bottom: 18px; }
+        .page-hero h1 em { font-style: normal; color: #4ade80; }
+        .page-hero p { font-size: clamp(15px, 1.7vw, 18px); color: rgba(255,255,255,.78); line-height: 1.7; max-width: 640px; }
+
+        /* Atalhos internos */
+        .subnav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+        .subnav a {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 18px; border-radius: 100px; text-decoration: none;
+            font-size: 14px; font-weight: 600; color: #fff;
+            background: rgba(15,23,42,.55); border: 1px solid rgba(255,255,255,.18);
+            backdrop-filter: blur(10px); transition: background .2s, border-color .2s;
+        }
+        .subnav a:hover { background: rgba(22,163,74,.3); border-color: rgba(74,222,128,.55); }
+        .subnav svg { width: 16px; height: 16px; stroke: #4ade80; }
+
+        /* ── SEÇÕES ESCURAS (padrão do site) ───────────────── */
+        .dark-section { position: relative; background: linear-gradient(135deg, #0f172a 0%, #0a2918 100%); overflow: hidden; }
+        .dark-section.invert { background: linear-gradient(135deg, #0a2918 0%, #0f172a 100%); }
+        .section-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: .6; pointer-events: none; }
+        .section-inner { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 88px 48px; }
+        .sec-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2.5px; color: var(--accent); }
+        .sec-title { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; margin-top: 8px; color: #fff; letter-spacing: -.5px; }
+        .sec-head { margin-bottom: 44px; max-width: 760px; }
+        .sec-head p { margin-top: 16px; font-size: 16px; color: var(--muted); line-height: 1.8; }
+        .sec-head strong, .glass strong, .card strong { color: #e2e8f0; }
+
+        .glass {
+            background: rgba(15,23,42,.6);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,.08);
+            border-top: 1px solid rgba(255,255,255,.15);
+            border-left: 1px solid rgba(255,255,255,.15);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,.35);
+        }
+
+        /* Empresa */
+        .empresa-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; align-items: stretch; }
+        .empresa-texto { padding: 40px; }
+        .empresa-texto p { font-size: 16px; color: var(--muted); line-height: 1.85; }
+        .empresa-texto p + p { margin-top: 16px; }
+        .ficha { padding: 32px; display: flex; flex-direction: column; gap: 18px; }
+        .ficha h3 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.8px; color: var(--accent); font-weight: 700; }
+        .ficha dl { display: grid; gap: 16px; }
+        .ficha dt { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; }
+        .ficha dd { font-size: 15px; color: #fff; font-weight: 600; margin-top: 3px; line-height: 1.55; }
+
+        /* Cartões */
+        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+        .cards.cols-4 { grid-template-columns: repeat(4, 1fr); }
+        .card { padding: 28px; transition: transform .3s cubic-bezier(.175,.885,.32,1.275), border-color .3s; }
+        .card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.22); }
+        .card-icon {
+            width: 48px; height: 48px; border-radius: 13px; background: rgba(46,125,50,.2);
+            display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+            border: 1px solid rgba(76,175,80,.25);
+        }
+        .card-icon svg { width: 24px; height: 24px; stroke: var(--accent); stroke-width: 1.75; fill: none; }
+        .card h3 { font-size: 16.5px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+        .valores { margin-top: 22px; }
+
+        /* Fluxo do ERP */
+        .fluxo { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 40px; padding: 22px 26px; }
+        .fluxo span.passo { font-size: 14px; font-weight: 700; color: #fff; padding: 8px 14px; border-radius: 10px; background: rgba(22,163,74,.18); border: 1px solid rgba(74,222,128,.3); }
+        .fluxo span.seta { color: #4ade80; font-weight: 800; }
+        .fluxo .rotulo { font-size: 12px; text-transform: uppercase; letter-spacing: 1.6px; color: var(--muted); font-weight: 700; margin-right: 6px; }
+
+        /* Proteção de dados */
+        .lgpd { margin-top: 28px; padding: 36px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+        .lgpd h3 { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+        .lgpd p { font-size: 15px; color: var(--muted); line-height: 1.8; }
+        .lgpd p + p { margin-top: 12px; }
+        .lgpd ul { list-style: none; display: grid; gap: 10px; margin-top: 4px; }
+        .lgpd li { display: flex; gap: 10px; font-size: 15px; color: #cbd5e1; line-height: 1.6; }
+        .lgpd li svg { width: 18px; height: 18px; stroke: #4ade80; flex-shrink: 0; margin-top: 3px; }
+        .lgpd a { color: #4ade80; }
+        .aviso { margin-top: 18px; font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.7; }
+
+        /* Contato */
+        .contato-grid { display: grid; grid-template-columns: 1.65fr 1fr; gap: 28px; align-items: stretch; }
+        .contato-itens { padding: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+        .citem { display: flex; gap: 14px; align-items: flex-start; }
+        .citem .ci {
+            width: 44px; height: 44px; background: rgba(46,125,50,.2);
+            border: 1px solid rgba(76,175,80,.25); border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .citem .ci svg { width: 22px; height: 22px; stroke: var(--accent); stroke-width: 1.75; fill: none; }
+        .citem strong { display: block; font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+        .citem span, .citem a { font-size: 14px; color: var(--muted); line-height: 1.6; }
+        .citem a { color: #4ade80; text-decoration: none; white-space: nowrap; }
+        .citem a:hover { text-decoration: underline; }
+        .contato-cta { padding: 36px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+        .contato-cta h3 { font-size: 22px; font-weight: 800; color: #fff; }
+        .contato-cta p { font-size: 15px; color: var(--muted); line-height: 1.7; }
+        .btn-primary {
+            display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+            background: var(--green); color: #fff;
+            padding: 15px 30px; border-radius: 10px; font-size: 15px; font-weight: 700;
+            text-decoration: none; transition: background .2s, transform .15s, box-shadow .2s;
+            box-shadow: 0 6px 24px rgba(22,163,74,.45);
+        }
+        .btn-primary:hover { background: var(--green-d); transform: translateY(-2px); }
+        .btn-whats svg { width: 20px; height: 20px; stroke: #fff; }
+        .btn-ghost {
+            display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+            color: #fff; padding: 13px 28px; border-radius: 10px; font-size: 15px; font-weight: 600;
+            text-decoration: none; border: 2px solid rgba(255,255,255,.35); transition: border-color .2s, background .2s;
+        }
+        .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+
+        /* ── FOOTER (igual à página inicial) ───────────────── */
+        footer { background: #020c05; color: rgba(255,255,255,.5); padding: 44px 48px; text-align: center; }
+        footer .fl { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+        footer p   { font-size: 13px; line-height: 1.9; }
+        footer a   { color: #4ade80; text-decoration: none; }
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin-top: 10px; }
+
+        :focus-visible { outline: 2px solid #4ade80; outline-offset: 3px; }
+
+        /* ── RESPONSIVO ────────────────────────────────────── */
+        @media (max-width: 1100px) {
+            .contato-itens { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 1000px) {
+            .cards.cols-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 900px) {
+            .empresa-grid, .contato-grid, .lgpd { grid-template-columns: 1fr; }
+            .cards { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            nav { padding: 16px 20px; }
+            nav.scrolled { padding: 12px 20px; }
+            .nav-links { display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 260px; background: #1e293b; flex-direction: column; align-items: flex-start; padding: 80px 28px 28px; gap: 20px; box-shadow: -4px 0 30px rgba(0,0,0,.4); }
+            .nav-links.open { display: flex; }
+            .nav-links a, nav.scrolled .nav-links a { color: #fff; font-size: 16px; }
+            .btn-access { width: 100%; text-align: center; }
+            .hamburger { display: flex; }
+            .page-hero .content { padding: 116px 20px 40px; }
+            .section-inner { padding: 64px 20px; }
+            .cards, .cards.cols-4, .contato-itens { grid-template-columns: 1fr; }
+            .empresa-texto, .ficha, .contato-itens, .contato-cta { padding: 26px 22px; }
+            .lgpd { padding: 26px 22px; gap: 26px; }
+            .fluxo { padding: 18px; }
+            footer { padding: 40px 20px; }
+        }
+        @media (max-width: 360px) {
+            .citem a { white-space: normal; overflow-wrap: anywhere; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .section-canvas { display: none; }
+            .card, .card:hover { transition: none; transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="navbar">
+    <a href="index.html" class="nav-logo">
+        <img src="Logo_AgroCore_.png" alt="AgroCore ERP">
+        <span class="brand">AgroCore ERP</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+        <a href="index.html#recursos">Recursos</a>
+        <a href="sobre.html" aria-current="page">Sobre</a>
+        <a href="#contato">Contato</a>
+        <a href="index.html#acesso" class="btn-access">🔐 Acessar Sistema</a>
+    </div>
+    <button class="hamburger" id="hamburger" type="button" aria-label="Abrir menu" aria-controls="navLinks" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<main>
+<!-- ══ CABEÇALHO ══ -->
+<header class="page-hero">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="hero-badge">Sobre nós</div>
+        <h1>Quem faz o <em>AgroCore</em></h1>
+        <p>Conheça a empresa por trás do sistema, o que o AgroCore ERP faz pela sua operação e como cuidamos dos seus dados.</p>
+        <div class="subnav" aria-label="Nesta página">
+            <a href="#empresa"><i data-lucide="building-2"></i>A empresa</a>
+            <a href="#erp"><i data-lucide="layout-dashboard"></i>O AgroCore ERP</a>
+            <a href="#protecao"><i data-lucide="shield-check"></i>Proteção de dados</a>
+            <a href="#contato"><i data-lucide="mail"></i>Contato</a>
+        </div>
+    </div>
+</header>
+
+<!-- ══ A EMPRESA ══ -->
+<section class="dark-section" id="empresa" aria-labelledby="empresa-titulo">
+    <canvas class="section-canvas" id="empresa-canvas"></canvas>
+    <div class="section-inner">
+        <div class="sec-head">
+            <div class="sec-label">A empresa</div>
+            <h2 class="sec-title" id="empresa-titulo">Agrosoft Tecnologia</h2>
+        </div>
+        <div class="empresa-grid">
+            <div class="glass empresa-texto">
+                <p>O AgroCore ERP é desenvolvido pela <strong>Agrosoft Tecnologia Ltda.</strong>, empresa de tecnologia voltada ao agronegócio brasileiro.</p>
+                <p>O sistema nasceu da necessidade real de quem compra, vende e intermedia grãos no dia a dia: corretoras, cerealistas e produtores que precisavam de uma ferramenta robusta, simples e completa para organizar negociações, contratos, cargas e comissões, sem depender de planilhas soltas.</p>
+                <p>Cada recurso do AgroCore é pensado a partir da rotina do campo e do escritório: <strong>da negociação ao contrato, do embarque à entrega</strong>.</p>
+            </div>
+            <div class="glass ficha">
+                <h3>Dados da empresa</h3>
+                <dl>
+                    <div><dt>Razão social</dt><dd>Agrosoft Tecnologia Ltda.</dd></div>
+                    <div><dt>Produto</dt><dd>AgroCore ERP — Sistema de Gestão do Agronegócio</dd></div>
+                    <div><dt>Sede</dt><dd>Maringá — PR</dd></div>
+                    <div><dt>Telefone e WhatsApp</dt><dd><a href="https://wa.me/5544991685957" target="_blank" rel="noopener noreferrer" style="color:#4ade80; text-decoration:none;">+55 (44) 99168-5957</a></dd></div>
+                    <div><dt>Atendimento</dt><dd>Segunda a sexta, das 8h às 18h</dd></div>
+                </dl>
+            </div>
+        </div>
+        <div class="cards cols-4 valores">
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="wheat"></i></div>
+                <h3>Conhecimento do campo</h3>
+                <p>Feito por quem conhece a rotina de compra, venda e intermediação de grãos.</p>
+            </article>
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="sparkles"></i></div>
+                <h3>Tecnologia útil</h3>
+                <p>Recursos que resolvem problemas reais da operação, sem complicar o trabalho.</p>
+            </article>
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="handshake"></i></div>
+                <h3>Transparência</h3>
+                <p>Informações claras em cada etapa, para decisões seguras entre as partes.</p>
+            </article>
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="lock"></i></div>
+                <h3>Segurança</h3>
+                <p>Respeito à privacidade e aos limites de acesso de cada participante.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ══ O ERP ══ -->
+<section class="dark-section invert" id="erp" aria-labelledby="erp-titulo">
+    <canvas class="section-canvas" id="erp-canvas"></canvas>
+    <div class="section-inner">
+        <div class="sec-head">
+            <div class="sec-label">O sistema</div>
+            <h2 class="sec-title" id="erp-titulo">O que é o AgroCore ERP</h2>
+            <p>Um sistema de gestão na nuvem, acessado pelo navegador, que reúne em um só lugar a operação comercial e logística de quem trabalha com grãos. Cada empresa tem o <strong>seu próprio ambiente</strong>, com usuários, perfis e permissões definidos por ela.</p>
+        </div>
+        <div class="glass fluxo" aria-label="Fluxo da operação no AgroCore">
+            <span class="rotulo">O caminho da operação</span>
+            <span class="passo">Negociação</span><span class="seta" aria-hidden="true">→</span>
+            <span class="passo">Lote</span><span class="seta" aria-hidden="true">→</span>
+            <span class="passo">Contrato</span><span class="seta" aria-hidden="true">→</span>
+            <span class="passo">Embarque</span><span class="seta" aria-hidden="true">→</span>
+            <span class="passo">Entrega</span><span class="seta" aria-hidden="true">→</span>
+            <span class="passo">Comissão</span>
+        </div>
+        <div class="cards">
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="calculator"></i></div>
+                <h3>Mesa de Negociação</h3>
+                <p>Simule preços de compra e venda, frete, impostos e despesas, e veja o resultado da operação antes de fechar.</p>
+            </article>
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="file-text"></i></div>
+                <h3>Contratos</h3>
+                <p>Contratos de intermediação, compra e venda e prestação de serviços, gerados a partir da negociação aprovada.</p>
+            </article>
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="truck"></i></div>
+                <h3>Embarques e Entregas</h3>
+                <p>Cargas, motoristas, pesos e acompanhamento de cada entrega, com histórico completo por contrato.</p>
+            </article>
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="banknote"></i></div>
+                <h3>Comissões e Financeiro</h3>
+                <p>Comissão calculada por carga, contas a receber e relatórios em PDF.</p>
+            </article>
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="bar-chart-2"></i></div>
+                <h3>Painéis e Relatórios</h3>
+                <p>Indicadores da operação, painel logístico e cotações de mercado em um só lugar.</p>
+            </article>
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="brain-circuit"></i></div>
+                <h3>AgroAssist — IA</h3>
+                <p>Assistente de inteligência artificial especializado em agronegócio, integrado ao sistema.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ══ PROTEÇÃO DE DADOS ══ -->
+<section class="dark-section" id="protecao" aria-labelledby="protecao-titulo">
+    <canvas class="section-canvas" id="protecao-canvas"></canvas>
+    <div class="section-inner">
+        <div class="sec-head">
+            <div class="sec-label">Proteção de dados</div>
+            <h2 class="sec-title" id="protecao-titulo">Seus dados, sob seu controle</h2>
+            <p>Contratos, preços e cadastros são informações estratégicas do seu negócio. Por isso, a segurança faz parte da construção do AgroCore desde o início.</p>
+        </div>
+        <div class="cards">
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="database"></i></div>
+                <h3>Ambiente separado por empresa</h3>
+                <p>Cada empresa tem seu próprio banco de dados. As informações de um cliente não ficam misturadas com as de outro.</p>
+            </article>
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="lock-keyhole"></i></div>
+                <h3>Conexão criptografada</h3>
+                <p>Todo o acesso ao sistema é feito por conexão segura (HTTPS), protegendo as informações no caminho.</p>
+            </article>
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="server"></i></div>
+                <h3>Servidores no Brasil</h3>
+                <p>O sistema roda em infraestrutura de nuvem localizada no Brasil, na região de São Paulo.</p>
+            </article>
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="users"></i></div>
+                <h3>Acesso por perfil</h3>
+                <p>Cada usuário vê e faz apenas o que o seu perfil permite. Contas administrativas usam verificação em duas etapas.</p>
+            </article>
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="key-round"></i></div>
+                <h3>Senhas protegidas</h3>
+                <p>As senhas são guardadas de forma criptografada e não podem ser lidas por ninguém, nem pela nossa equipe.</p>
+            </article>
+            <article class="glass card">
+                <div class="card-icon"><i data-lucide="history"></i></div>
+                <h3>Cópias de segurança e histórico</h3>
+                <p>Cópias de segurança diárias e registro das alterações importantes, para saber quem fez o quê e quando.</p>
+            </article>
+        </div>
+
+        <div class="glass lgpd">
+            <div>
+                <h3>Nosso compromisso com a LGPD</h3>
+                <p>Tratamos os dados pessoais de clientes, usuários e visitantes de acordo com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018).</p>
+                <p>Os dados enviados pelo formulário de contato deste site são usados apenas para responder à sua solicitação. Os dados cadastrados no AgroCore ERP pertencem à empresa cliente e são usados somente para o funcionamento do sistema. Não vendemos dados de clientes.</p>
+            </div>
+            <div>
+                <h3>Seus direitos</h3>
+                <ul>
+                    <li><i data-lucide="check"></i>Confirmar se tratamos seus dados e ter acesso a eles</li>
+                    <li><i data-lucide="check"></i>Corrigir dados incompletos ou desatualizados</li>
+                    <li><i data-lucide="check"></i>Pedir a exclusão de dados, nos casos previstos em lei</li>
+                    <li><i data-lucide="check"></i>Tirar dúvidas sobre o uso das suas informações</li>
+                </ul>
+                <p class="aviso">Para exercer seus direitos, escreva para <a href="mailto:agrosoftsistemas@gmail.com?subject=Privacidade%20e%20dados%20pessoais">agrosoftsistemas@gmail.com</a> com o assunto “Privacidade”. A Política de Privacidade e os Termos de Uso completos estão em elaboração e serão publicados nesta página.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ CONTATO ══ -->
+<section class="dark-section invert" id="contato" aria-labelledby="contato-titulo">
+    <canvas class="section-canvas" id="contato-canvas"></canvas>
+    <div class="section-inner">
+        <div class="sec-head">
+            <div class="sec-label">Fale conosco</div>
+            <h2 class="sec-title" id="contato-titulo">Contato</h2>
+        </div>
+        <div class="contato-grid">
+            <div class="glass contato-itens">
+                <div class="citem">
+                    <div class="ci"><i data-lucide="map-pin"></i></div>
+                    <div>
+                        <strong>Endereço</strong>
+                        <span>Rua Duartina, 109 — Torres Imperador<br>Jardim Lucianópolis — Maringá — PR<br>CEP: 87080-440</span>
+                    </div>
+                </div>
+                <div class="citem">
+                    <div class="ci"><i data-lucide="mail"></i></div>
+                    <div>
+                        <strong>E-mail</strong>
+                        <a href="mailto:agrosoftsistemas@gmail.com">agrosoftsistemas@gmail.com</a>
+                    </div>
+                </div>
+                <div class="citem">
+                    <div class="ci"><i data-lucide="clock"></i></div>
+                    <div>
+                        <strong>Atendimento</strong>
+                        <span>Segunda a sexta, das 8h às 18h</span>
+                    </div>
+                </div>
+                <div class="citem">
+                    <div class="ci"><i data-lucide="phone"></i></div>
+                    <div>
+                        <strong>Telefone e WhatsApp</strong>
+                        <a href="tel:+5544991685957">+55 (44) 99168-5957</a>
+                    </div>
+                </div>
+            </div>
+            <div class="glass contato-cta">
+                <h3>Quer conhecer o AgroCore na prática?</h3>
+                <p>Peça uma demonstração. Nossa equipe entra em contato para entender sua operação e apresentar o sistema.</p>
+                <a href="https://wa.me/5544991685957?text=Ol%C3%A1!%20Gostaria%20de%20conhecer%20o%20AgroCore%20ERP." class="btn-primary btn-whats" target="_blank" rel="noopener noreferrer"><i data-lucide="message-circle"></i>Falar no WhatsApp</a>
+                <a href="index.html#contato" class="btn-ghost">📋 Solicitar Demonstração</a>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+    <div class="fl">🌾 AgroCore ERP</div>
+    <p>Sistema de Gestão do Agronegócio com Inteligência Artificial</p>
+    <p><a href="mailto:agrosoftsistemas@gmail.com">agrosoftsistemas@gmail.com</a></p>
+    <div class="footer-links">
+        <a href="index.html">Início</a>
+        <a href="sobre.html#empresa">A empresa</a>
+        <a href="sobre.html#protecao">Proteção de dados</a>
+        <a href="sobre.html#contato">Contato</a>
+    </div>
+    <p style="margin-top:16px; opacity:.35; font-size:12px;">© 2026 AgroCore ERP · Agrosoft Tecnologia Ltda. · Todos os direitos reservados · <a href="https://www.agrocore.ia.br" style="color:rgba(255,255,255,.35);">www.agrocore.ia.br</a></p>
+</footer>
+
+<script>
+// ── Ícones ─────────────────────────────────────────────
+if (window.lucide) lucide.createIcons();
+
+// ── Partículas (mesmo efeito da página inicial) ────────
+function initParticleCanvas(canvasId, count, connDist) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, particles;
+    function resize() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        W = canvas.width = rect.width;
+        H = canvas.height = rect.height;
+    }
+    function nova() {
+        return { x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .5, vy: (Math.random() - .5) * .5, r: Math.random() * 1.5 + 1 };
+    }
+    function init() { resize(); particles = Array.from({ length: count }, nova); }
+    function animate() {
+        ctx.clearRect(0, 0, W, H);
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0 || p.x > W) p.vx *= -1;
+            if (p.y < 0 || p.y > H) p.vy *= -1;
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(76,175,80,.55)'; ctx.fill();
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = p.x - particles[j].x, dy = p.y - particles[j].y;
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d < connDist) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(76,175,80,${(1 - d / connDist) * .45})`;
+                    ctx.lineWidth = .5;
+                    ctx.moveTo(p.x, p.y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+    window.addEventListener('resize', init);
+    init(); animate();
+}
+initParticleCanvas('empresa-canvas', 45, 120);
+initParticleCanvas('erp-canvas', 55, 130);
+initParticleCanvas('protecao-canvas', 50, 130);
+initParticleCanvas('contato-canvas', 40, 120);
+
+// ── Menu mobile ────────────────────────────────────────
+const navLinks = document.getElementById('navLinks');
+const hamburger = document.getElementById('hamburger');
+function setMenu(open) {
+    navLinks.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    hamburger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+}
+hamburger.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+// ── Navbar ao rolar ────────────────────────────────────
+const navbar = document.getElementById('navbar');
+const onScroll = () => navbar.classList.toggle('scrolled', scrollY > 60);
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+</body>
+</html>
