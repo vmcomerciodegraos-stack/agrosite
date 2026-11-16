@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviso de Privacidade — AgroCore ERP | Agrosoft Tecnologia</title>
+    <meta name="description" content="Como a Agrosoft Tecnologia trata dados pessoais no site e no AgroCore ERP, e como exercer os direitos garantidos pela LGPD.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { --green: #16a34a; --green-d: #15803d; --dark: #0f172a; --muted: #94a3b8; --accent: #4caf50; }
+        html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+        body { font-family: 'Inter', sans-serif; color: var(--dark); background: #0b1a14; overflow-x: hidden; }
+
+        /* ── NAVBAR (igual às demais páginas) ──────────────── */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 18px 48px; display: flex; align-items: center; justify-content: space-between; transition: background .3s, box-shadow .3s, padding .3s; }
+        nav.scrolled { background: rgba(255,255,255,.97); box-shadow: 0 2px 24px rgba(0,0,0,.08); padding: 12px 48px; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo img { height: 38px; border-radius: 10px; object-fit: contain; }
+        .nav-logo .brand { font-size: 18px; font-weight: 800; color: #fff; transition: color .3s; }
+        nav.scrolled .nav-logo .brand { color: var(--green-d); }
+        .nav-links { display: flex; align-items: center; gap: 28px; }
+        .nav-links a { font-size: 14px; font-weight: 500; color: rgba(255,255,255,.85); text-decoration: none; transition: color .2s; }
+        nav.scrolled .nav-links a { color: var(--dark); }
+        .nav-links a:hover { color: var(--green); }
+        .btn-access { background: var(--green); color: #fff !important; padding: 10px 22px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; box-shadow: 0 2px 12px rgba(22,163,74,.3); }
+        .btn-access:hover { background: var(--green-d); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: 0; padding: 6px; }
+        .hamburger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; }
+        nav.scrolled .hamburger span { background: var(--dark); }
+
+        /* ── CABEÇALHO ─────────────────────────────────────── */
+        .page-hero { position: relative; min-height: 380px; background: #0a2918 url('FUNDO1.png') center center / cover no-repeat; display: flex; align-items: flex-end; }
+        .page-hero .overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(5,20,10,.9) 0%, rgba(10,20,40,.78) 60%, rgba(5,20,10,.66) 100%); }
+        .page-hero .content { position: relative; z-index: 2; width: 100%; max-width: 1180px; margin: 0 auto; padding: 140px 48px 52px; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(22,163,74,.22); border: 1px solid rgba(22,163,74,.45); color: #86efac; padding: 7px 18px; border-radius: 100px; font-size: 13px; font-weight: 500; margin-bottom: 22px; }
+        .page-hero h1 { font-size: clamp(30px, 4.6vw, 54px); font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: -1px; margin-bottom: 16px; }
+        .page-hero h1 em { font-style: normal; color: #4ade80; }
+        .page-hero p { font-size: clamp(15px, 1.6vw, 18px); color: rgba(255,255,255,.8); line-height: 1.7; max-width: 700px; }
+        .versao { margin-top: 18px; font-size: 13px; color: rgba(255,255,255,.6); }
+
+        /* ── CORPO ─────────────────────────────────────────── */
+        .doc-wrap { background: linear-gradient(160deg, #0f172a 0%, #0a2918 100%); }
+        .doc { max-width: 1180px; margin: 0 auto; padding: 64px 48px 88px; display: grid; grid-template-columns: 260px 1fr; gap: 40px; align-items: start; }
+        .doc > * { min-width: 0; }
+        .resumo a, article.secao a { overflow-wrap: anywhere; }
+        .glass { background: rgba(15,23,42,.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,.08); border-top: 1px solid rgba(255,255,255,.15); border-left: 1px solid rgba(255,255,255,.15); border-radius: 20px; box-shadow: 0 8px 32px rgba(0,0,0,.35); }
+        .toc { position: sticky; top: 96px; padding: 22px; }
+        .toc h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 1.8px; color: var(--accent); margin-bottom: 12px; }
+        .toc ol { list-style: none; display: grid; gap: 4px; counter-reset: t; }
+        .toc li { counter-increment: t; }
+        .toc a { display: flex; gap: 8px; font-size: 13.5px; color: #cbd5e1; text-decoration: none; padding: 6px 8px; border-radius: 8px; line-height: 1.4; }
+        .toc a::before { content: counter(t) "."; color: #4ade80; font-weight: 700; min-width: 18px; }
+        .toc a:hover { background: rgba(22,163,74,.18); color: #fff; }
+
+        .resumo { padding: 28px 32px; margin-bottom: 28px; border-color: rgba(74,222,128,.35); }
+        .resumo h2 { font-size: 18px; color: #fff; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .resumo h2 svg { width: 22px; height: 22px; stroke: #4ade80; }
+        .resumo ul { list-style: none; display: grid; gap: 10px; }
+        .resumo li { display: flex; gap: 10px; font-size: 15px; color: #e2e8f0; line-height: 1.6; }
+        .resumo li:nth-child(5) svg { stroke: #fbbf24; }
+        .resumo li svg { width: 18px; height: 18px; stroke: #4ade80; flex-shrink: 0; margin-top: 3px; }
+
+        article.secao { padding: 32px 36px; margin-bottom: 22px; }
+        article.secao h2 { font-size: 21px; font-weight: 800; color: #fff; margin-bottom: 14px; letter-spacing: -.2px; }
+        article.secao h2 span { color: #4ade80; margin-right: 6px; }
+        article.secao h3 { font-size: 16px; font-weight: 700; color: #e2e8f0; margin: 18px 0 8px; }
+        article.secao p, article.secao li, article.secao td, article.secao th { font-size: 15px; color: var(--muted); line-height: 1.75; }
+        article.secao p + p { margin-top: 10px; }
+        article.secao strong { color: #e2e8f0; }
+        article.secao ul { margin: 8px 0 0 20px; display: grid; gap: 6px; }
+        article.secao a { color: #4ade80; }
+        .tabela { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .tabela th { text-align: left; color: #e2e8f0; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .5px; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.15); }
+        .tabela td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.07); vertical-align: top; }
+        .tabela td:first-child { color: #e2e8f0; font-weight: 600; white-space: nowrap; }
+        .tabela-scroll { overflow-x: auto; }
+        .destaque { margin-top: 14px; padding: 14px 18px; border-radius: 12px; background: rgba(22,163,74,.12); border: 1px solid rgba(74,222,128,.28); }
+        .contato-encarregado { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 12px; }
+        .contato-encarregado div { padding: 14px 16px; border-radius: 12px; background: rgba(15,23,42,.7); border: 1px solid rgba(255,255,255,.08); }
+        .contato-encarregado dt { font-size: 12px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); font-weight: 700; }
+        .contato-encarregado dd { font-size: 15px; color: #fff; font-weight: 600; margin-top: 4px; overflow-wrap: anywhere; }
+
+        footer { background: #020c05; color: rgba(255,255,255,.5); padding: 44px 48px; text-align: center; }
+        footer .fl { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+        footer p { font-size: 13px; line-height: 1.9; }
+        footer a { color: #4ade80; text-decoration: none; }
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 18px; margin-top: 10px; }
+        :focus-visible { outline: 2px solid #4ade80; outline-offset: 3px; }
+
+        @media (max-width: 960px) {
+            .doc { grid-template-columns: 1fr; }
+            .toc { position: static; }
+        }
+        @media (max-width: 640px) {
+            nav { padding: 16px 20px; }
+            nav.scrolled { padding: 12px 20px; }
+            .nav-links { display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 260px; background: #1e293b; flex-direction: column; align-items: flex-start; padding: 80px 28px 28px; gap: 20px; box-shadow: -4px 0 30px rgba(0,0,0,.4); }
+            .nav-links.open { display: flex; }
+            .nav-links a, nav.scrolled .nav-links a { color: #fff; font-size: 16px; }
+            .btn-access { width: 100%; text-align: center; }
+            .hamburger { display: flex; }
+            .page-hero .content { padding: 116px 20px 36px; }
+            .doc { padding: 40px 20px 64px; gap: 24px; }
+            article.secao, .resumo { padding: 24px 20px; }
+            .contato-encarregado { grid-template-columns: 1fr; }
+            .tabela thead { display: none; }
+            .tabela, .tabela tbody, .tabela tr, .tabela td { display: block; width: 100%; }
+            .tabela tr { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+            .tabela td { padding: 0; border: 0; }
+            .tabela td:first-child { white-space: normal; margin-bottom: 4px; color: #4ade80; }
+            footer { padding: 40px 20px; }
+        }
+        @media print {
+            nav, .toc, footer, .page-hero .overlay { display: none; }
+            body, .doc-wrap { background: #fff; }
+            .page-hero { min-height: 0; background: none; }
+            .page-hero .content, .doc { padding: 0; display: block; }
+            .page-hero h1, .page-hero p, .versao, article.secao h2, article.secao h3, article.secao strong, .resumo h2, .resumo li, .contato-encarregado dd, .tabela th, .tabela td:first-child { color: #000; }
+            article.secao p, article.secao li, article.secao td { color: #222; }
+            .glass { background: none; box-shadow: none; border: 0; backdrop-filter: none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <a href="index.html" class="nav-logo">
+        <img src="Logo_AgroCore_.png" alt="AgroCore ERP">
+        <span class="brand">AgroCore ERP</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+        <a href="index.html#recursos">Recursos</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="sobre.html#contato">Contato</a>
+        <a href="index.html#acesso" class="btn-access">🔐 Acessar Sistema</a>
+    </div>
+    <button class="hamburger" id="hamburger" type="button" aria-label="Abrir menu" aria-controls="navLinks" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<main>
+<header class="page-hero">
+    <div class="overlay"></div>
+    <div class="content">
+        <div class="hero-badge">LGPD · Lei nº 13.709/2018</div>
+        <h1>Aviso de <em>Privacidade</em></h1>
+        <p>Como a Agrosoft Tecnologia trata os dados pessoais no site e no AgroCore ERP, e como você exerce os direitos garantidos pela Lei Geral de Proteção de Dados.</p>
+        <p class="versao">Versão 1.0 · vigente desde 16 de novembro de 2026</p>
+    </div>
+</header>
+
+<div class="doc-wrap">
+<div class="doc">
+    <aside class="glass toc" aria-label="Índice">
+        <h2>Neste aviso</h2>
+        <ol>
+            <li><a href="#quem-somos">Quem somos</a></li>
+            <li><a href="#papeis">Nosso papel</a></li>
+            <li><a href="#piloto">Visitante: teste piloto</a></li>
+            <li><a href="#dados">Dados que tratamos</a></li>
+            <li><a href="#finalidades">Para que usamos</a></li>
+            <li><a href="#compartilhamento">Com quem compartilhamos</a></li>
+            <li><a href="#internacional">Fora do Brasil</a></li>
+            <li><a href="#seguranca">Segurança</a></li>
+            <li><a href="#retencao">Por quanto tempo</a></li>
+            <li><a href="#direitos">Seus direitos</a></li>
+            <li><a href="#navegador">Navegador e cookies</a></li>
+            <li><a href="#encarregado">Encarregado</a></li>
+            <li><a href="#alteracoes">Alterações</a></li>
+        </ol>
+    </aside>
+
+    <div>
+        <section class="glass resumo" aria-labelledby="resumo-titulo">
+            <h2 id="resumo-titulo"><i data-lucide="shield-check"></i>Resumo em 6 pontos</h2>
+            <ul>
+                <li><i data-lucide="check"></i><span>Usamos os dados para fazer o AgroCore funcionar, manter sua conta segura e cumprir a lei. <strong>Não vendemos dados.</strong></span></li>
+                <li><i data-lucide="check"></i><span>Os dados que a sua empresa cadastra (fornecedores, compradores, motoristas, contratos) <strong>pertencem à sua empresa</strong>. Nós só guardamos e processamos.</span></li>
+                <li><i data-lucide="check"></i><span>O sistema fica em <strong>servidores no Brasil</strong>, com banco de dados separado por empresa e conexão criptografada.</span></li>
+                <li><i data-lucide="check"></i><span>Alguns serviços de apoio ficam fora do Brasil, como o assistente de IA <strong>AgroAssist</strong>. Explicamos cada um abaixo.</span></li>
+                <li><i data-lucide="alert-triangle"></i><span>O plano <strong>Visitante</strong> é um <strong>teste piloto gratuito</strong>. Temos cópias de segurança diárias, mas confira valores, pesos e notas com os documentos originais e guarde seus próprios controles (<a href="#piloto">veja a seção 3</a>).</span></li>
+                <li><i data-lucide="check"></i><span>Você pode pedir acesso, correção ou exclusão dos seus dados pelo e-mail <a href="mailto:agrosoftsistemas@gmail.com?subject=Privacidade">agrosoftsistemas@gmail.com</a>.</span></li>
+            </ul>
+        </section>
+
+        <article class="glass secao" id="quem-somos">
+            <h2><span>1.</span>Quem somos e a quem este aviso se aplica</h2>
+            <p>A <strong>Agrosoft Tecnologia Ltda.</strong>, com endereço na Rua Duartina, 109 — Torres Imperador, Jardim Lucianópolis, Maringá — PR, CEP 87080-440, desenvolve e opera o <strong>AgroCore ERP</strong> e o site <strong>www.agrocore.ia.br</strong>.</p>
+            <p>Este aviso vale para todas as pessoas cujos dados passam pelo site ou pelo sistema: <strong>clientes</strong> e seus usuários, <strong>parceiros</strong> (fornecedores, compradores e representantes com acesso ao sistema), <strong>visitantes</strong> com conta gratuita e quem preenche o formulário de contato do site.</p>
+        </article>
+
+        <article class="glass secao" id="papeis">
+            <h2><span>2.</span>Nosso papel no tratamento dos dados</h2>
+            <p>A LGPD diferencia quem decide sobre os dados (<strong>controlador</strong>) de quem os trata em nome de outro (<strong>operador</strong>). No AgroCore, os dois papéis existem:</p>
+            <ul>
+                <li><strong>A Agrosoft é controladora</strong> dos dados das contas de acesso (login, verificação, registros de acesso), dos contatos recebidos pelo site e dos dados usados para atendimento e cobrança.</li>
+                <li><strong>A Agrosoft é operadora</strong> dos dados que cada empresa cliente cadastra no seu ambiente: fornecedores, compradores, representantes, motoristas, veículos, contratos, cargas, pagamentos e anexos. Nesse caso, <strong>a empresa cliente é a controladora</strong> e decide o que cadastrar. Nós tratamos esses dados apenas para prestar o serviço, conforme as instruções dela.</li>
+                <li>No plano <strong>Visitante</strong>, cada pessoa tem um espaço próprio. Os dados que ela cadastra nesse espaço seguem a mesma regra: são dela, e a Agrosoft atua como operadora.</li>
+            </ul>
+        </article>
+
+        <article class="glass secao" id="piloto">
+            <h2><span>3.</span>Plano Visitante: período de teste piloto</h2>
+            <p>O plano <strong>Visitante</strong> é gratuito e está em <strong>fase de teste piloto</strong>: o AgroCore segue em evolução e recebe melhorias e correções com frequência. O ambiente conta com <strong>cópias de segurança diárias</strong> e banco de dados próprio para cada visitante, e o risco de perda de informações é baixo. Ainda assim, durante o piloto, pedimos atenção aos pontos abaixo.</p>
+            <h3>Informações da operação</h3>
+            <p>Valores em dinheiro, preços, comissões, saldos, controle de cheques, notas fiscais, carregamentos, pesos e demais números lançados no sistema:</p>
+            <ul>
+                <li><strong>Confira com os documentos originais</strong> (notas fiscais, tickets de pesagem, comprovantes e extratos) antes de fazer pagamentos, cobranças, acertos ou tomar decisões comerciais.</li>
+                <li>O AgroCore <strong>não substitui</strong> os documentos fiscais e contábeis oficiais nem a escrituração exigida por lei. Guarde os originais e mantenha seus controles próprios.</li>
+                <li>Mantenha uma <strong>cópia própria</strong> das informações importantes, por exemplo exportando os relatórios em PDF.</li>
+                <li>Durante o piloto, <strong>não garantimos</strong> a disponibilidade contínua do serviço, a ausência de falhas nos cálculos e relatórios, nem a preservação permanente das informações.</li>
+            </ul>
+            <h3>Responsabilidade</h3>
+            <p>Na extensão permitida pela lei, a Agrosoft <strong>não se responsabiliza por perdas financeiras, pagamentos, cobranças, decisões comerciais ou obrigações fiscais</strong> baseados em informações do ambiente de teste, nem por eventual perda ou indisponibilidade dessas informações durante o piloto.</p>
+            <h3>Dados pessoais de terceiros</h3>
+            <p>Se você cadastrar dados reais de outras pessoas (como CPF, documentos, endereços ou dados bancários de fornecedores, compradores e motoristas), você é o controlador desses dados e é responsável por ter autorização ou base legal para isso.</p>
+            <p class="destaque">Isso não diminui o nosso cuidado: as medidas de segurança da seção “Como protegemos os dados” valem também para o plano Visitante, e os seus direitos como titular continuam garantidos. Se notar qualquer valor ou cálculo estranho, avise-nos pelo e-mail <a href="mailto:agrosoftsistemas@gmail.com?subject=Piloto%20%E2%80%94%20diverg%C3%AAncia">agrosoftsistemas@gmail.com</a> ou pelo WhatsApp <a href="https://wa.me/5544991685957" target="_blank" rel="noopener noreferrer">+55 (44) 99168-5957</a>.</p>
+        </article>
+
+        <article class="glass secao" id="dados">
+            <h2><span>4.</span>Quais dados tratamos</h2>
+            <div class="tabela-scroll">
+            <table class="tabela">
+                <thead><tr><th>Origem</th><th>Dados</th></tr></thead>
+                <tbody>
+                    <tr><td>Formulário do site</td><td>Nome da empresa, CPF ou CNPJ, nome do responsável, WhatsApp, e-mail e a mensagem enviada.</td></tr>
+                    <tr><td>Conta de acesso</td><td>Nome, CPF ou CNPJ usado no login, telefone ou e-mail para verificação, senha (guardada apenas de forma criptografada), dados da verificação em duas etapas e registros de acesso (data, hora, endereço IP e ações realizadas).</td></tr>
+                    <tr><td>Cadastros da empresa</td><td>De fornecedores, compradores, representantes e motoristas: nome, CPF ou CNPJ, RG, CNH, inscrição estadual, endereço, telefones, WhatsApp, e-mail, dados bancários e chave PIX. Também placas de veículos, contatos de negociações, contratos, cargas, pesos, pagamentos, comissões e anexos (notas fiscais, comprovantes, tickets de pesagem).</td></tr>
+                    <tr><td>Assistente AgroAssist</td><td>As perguntas digitadas e os dados do sistema que o assistente consulta para responder, dentro das permissões do usuário.</td></tr>
+                    <tr><td>Uso do sistema</td><td>Registros técnicos de funcionamento e segurança, como erros, tentativas de acesso e alterações importantes (quem fez, o quê e quando).</td></tr>
+                </tbody>
+            </table>
+            </div>
+            <p class="destaque">Não pedimos dados sensíveis (como saúde, religião ou biometria). Pedimos que a sua empresa também não os cadastre no sistema.</p>
+        </article>
+
+        <article class="glass secao" id="finalidades">
+            <h2><span>5.</span>Para que usamos os dados e com qual base legal</h2>
+            <ul>
+                <li><strong>Prestar o serviço contratado</strong>: criar contas, permitir o login, registrar negociações, contratos, cargas e comissões, gerar relatórios. Base legal: <strong>execução de contrato</strong> (art. 7º, V).</li>
+                <li><strong>Manter o sistema seguro</strong>: verificação em duas etapas, controle de acesso por perfil, registro de alterações, prevenção de fraudes e de acessos indevidos. Base legal: <strong>legítimo interesse</strong> (art. 7º, IX), na proteção da conta e dos dados do próprio titular.</li>
+                <li><strong>Cumprir obrigações legais</strong>: guardar registros de acesso e documentos pelo prazo que a lei exige. Base legal: <strong>cumprimento de obrigação legal</strong> (art. 7º, II).</li>
+                <li><strong>Responder contatos e apresentar o AgroCore</strong>: retornar quem preenche o formulário do site. Base legal: <strong>procedimentos preliminares a contrato</strong>, a pedido do titular (art. 7º, V).</li>
+                <li><strong>Defender direitos</strong> em processos judiciais, administrativos ou arbitrais. Base legal: <strong>exercício regular de direitos</strong> (art. 7º, VI).</li>
+            </ul>
+            <p>Não usamos os dados para publicidade de terceiros nem para criar perfis de comportamento.</p>
+        </article>
+
+        <article class="glass secao" id="compartilhamento">
+            <h2><span>6.</span>Com quem compartilhamos</h2>
+            <p><strong>Não vendemos nem alugamos dados pessoais.</strong> Compartilhamos somente o necessário com fornecedores que ajudam a operar o serviço:</p>
+            <div class="tabela-scroll">
+            <table class="tabela">
+                <thead><tr><th>Fornecedor</th><th>Para quê</th></tr></thead>
+                <tbody>
+                    <tr><td>Google Cloud</td><td>Hospedagem do sistema e das cópias de segurança, em servidores no Brasil (região de São Paulo).</td></tr>
+                    <tr><td>Groq</td><td>Processamento das perguntas do assistente AgroAssist (inteligência artificial). Só recebe dados quando o assistente é usado.</td></tr>
+                    <tr><td>Resend</td><td>Envio de e-mails do sistema, como códigos de verificação e convites.</td></tr>
+                    <tr><td>Meta (WhatsApp)</td><td>Envio de mensagens de verificação por WhatsApp, quando esse canal estiver ativo.</td></tr>
+                    <tr><td>FormSubmit</td><td>Encaminhamento das mensagens do formulário de contato do site para o nosso e-mail.</td></tr>
+                    <tr><td>GitHub</td><td>Hospedagem do site institucional.</td></tr>
+                    <tr><td>Serviços públicos de consulta</td><td>BrasilAPI (dados públicos de CNPJ), ViaCEP (endereço pelo CEP), OSRM (distância de rotas) e ip-api.com (cidade aproximada pelo endereço IP, para mostrar o clima no painel).</td></tr>
+                    <tr><td>Google Fonts e unpkg</td><td>Fontes e ícones do site. Recebem apenas dados técnicos do navegador, como o endereço IP.</td></tr>
+                </tbody>
+            </table>
+            </div>
+            <p>Também podemos fornecer dados a <strong>autoridades públicas</strong>, quando houver obrigação legal ou ordem judicial.</p>
+        </article>
+
+        <article class="glass secao" id="internacional">
+            <h2><span>7.</span>Transferência de dados para fora do Brasil</h2>
+            <p>O AgroCore e os seus bancos de dados ficam no Brasil. Alguns fornecedores da lista acima, porém, processam dados fora do país, principalmente nos Estados Unidos: <strong>Groq</strong> (AgroAssist), <strong>Resend</strong> (e-mails), <strong>Meta</strong> (WhatsApp), <strong>FormSubmit</strong> (formulário do site), <strong>GitHub</strong> (site), <strong>ip-api.com</strong> (clima) e os serviços de fontes e ícones do site.</p>
+            <p>Essas transferências ocorrem nas hipóteses do art. 33 da LGPD, para a execução do serviço contratado, e se limitam ao necessário para cada finalidade.</p>
+            <p class="destaque"><strong>Sobre o AgroAssist:</strong> ao usar o assistente, suas perguntas e os dados que ele consulta para responder (por exemplo, contratos, cargas, pagamentos ou nomes de empresas) são enviados à Groq para gerar a resposta. O uso do assistente é opcional. Se preferir que esses dados não saiam do Brasil, basta não utilizá-lo.</p>
+        </article>
+
+        <article class="glass secao" id="seguranca">
+            <h2><span>8.</span>Como protegemos os dados</h2>
+            <ul>
+                <li><strong>Ambiente separado por empresa</strong>: cada cliente tem o seu próprio banco de dados.</li>
+                <li><strong>Conexão criptografada</strong> (HTTPS) em todo o acesso ao sistema e ao site.</li>
+                <li><strong>Senhas criptografadas</strong>: não podem ser lidas por ninguém, nem pela nossa equipe.</li>
+                <li><strong>Acesso por perfil</strong>: cada usuário vê e faz apenas o que o seu perfil permite. Contas administrativas usam verificação em duas etapas.</li>
+                <li><strong>Registro de alterações</strong> importantes e dos acessos ao sistema.</li>
+                <li><strong>Cópias de segurança diárias</strong>, guardadas em local separado do sistema.</li>
+            </ul>
+            <p>Nenhum sistema é totalmente imune a incidentes. Se ocorrer um incidente de segurança que possa causar risco ou dano relevante, comunicaremos os titulares afetados e a Autoridade Nacional de Proteção de Dados (ANPD), como determina a lei.</p>
+        </article>
+
+        <article class="glass secao" id="retencao">
+            <h2><span>9.</span>Por quanto tempo guardamos</h2>
+            <ul>
+                <li><strong>Dados da conta e do ambiente da empresa</strong>: enquanto a conta ou o contrato estiver ativo. Depois disso, pelo prazo necessário para cumprir obrigações legais (por exemplo, fiscais) ou defender direitos, e então são excluídos ou anonimizados.</li>
+                <li><strong>Registros de acesso</strong>: por pelo menos 6 meses, como exige o Marco Civil da Internet (Lei nº 12.965/2014).</li>
+                <li><strong>Cópias de segurança</strong>: são substituídas automaticamente por cópias mais novas, em ciclos rotativos.</li>
+                <li><strong>Mensagens do formulário do site</strong>: pelo tempo necessário para o atendimento e eventual negociação.</li>
+            </ul>
+        </article>
+
+        <article class="glass secao" id="direitos">
+            <h2><span>10.</span>Seus direitos como titular</h2>
+            <p>A LGPD (art. 18) garante a você o direito de:</p>
+            <ul>
+                <li>confirmar se tratamos seus dados e ter <strong>acesso</strong> a eles;</li>
+                <li><strong>corrigir</strong> dados incompletos, inexatos ou desatualizados;</li>
+                <li>pedir a <strong>anonimização, o bloqueio ou a eliminação</strong> de dados desnecessários, excessivos ou tratados em desacordo com a lei;</li>
+                <li>pedir a <strong>portabilidade</strong> dos dados a outro fornecedor, nos termos da regulamentação;</li>
+                <li>saber com quais entidades <strong>compartilhamos</strong> seus dados;</li>
+                <li>pedir a <strong>eliminação</strong> dos dados tratados com base no seu consentimento, quando for o caso, e ser informado sobre a possibilidade de não consentir;</li>
+                <li><strong>revogar o consentimento</strong>, quando ele for a base do tratamento;</li>
+                <li><strong>opor-se</strong> a tratamento feito em desacordo com a lei;</li>
+                <li>pedir a <strong>revisão de decisões automatizadas</strong> que afetem seus interesses;</li>
+                <li>apresentar reclamação à <strong>ANPD</strong> (Autoridade Nacional de Proteção de Dados).</li>
+            </ul>
+            <h3>Como pedir</h3>
+            <p>Envie um e-mail para <a href="mailto:agrosoftsistemas@gmail.com?subject=Privacidade%20%E2%80%94%20pedido%20do%20titular">agrosoftsistemas@gmail.com</a> com o assunto <strong>“Privacidade”</strong>, dizendo o que deseja. Para proteger você, podemos pedir uma confirmação de identidade antes de atender. Respondemos <strong>em até 15 dias</strong>.</p>
+            <p>Se o pedido se referir a dados que uma empresa cliente cadastrou (por exemplo, você é motorista ou fornecedor de um cliente nosso), vamos encaminhá-lo à empresa responsável e apoiá-la na resposta, porque é ela quem decide sobre esses dados.</p>
+            <p>Alguns dados podem continuar guardados mesmo após um pedido de exclusão, quando a lei exigir ou para a defesa de direitos.</p>
+        </article>
+
+        <article class="glass secao" id="navegador">
+            <h2><span>11.</span>Navegador, cookies e armazenamento local</h2>
+            <p>O site institucional <strong>não usa cookies de publicidade nem de rastreamento</strong>. O AgroCore ERP guarda no seu navegador apenas o necessário para funcionar, como a sessão de acesso e preferências de tela (por exemplo, o tema). A sessão expira automaticamente após um período sem uso e é encerrada quando você sai do sistema.</p>
+        </article>
+
+        <article class="glass secao" id="encarregado">
+            <h2><span>12.</span>Encarregado pelo tratamento de dados (DPO)</h2>
+            <p>O Encarregado é o canal de comunicação entre a Agrosoft, os titulares e a ANPD.</p>
+            <dl class="contato-encarregado">
+                <div><dt>Encarregado</dt><dd>Equipe de Privacidade — Agrosoft Tecnologia Ltda.</dd></div>
+                <div><dt>E-mail</dt><dd><a href="mailto:agrosoftsistemas@gmail.com?subject=Privacidade">agrosoftsistemas@gmail.com</a></dd></div>
+                <div><dt>Telefone e WhatsApp</dt><dd><a href="https://wa.me/5544991685957" target="_blank" rel="noopener noreferrer">+55 (44) 99168-5957</a></dd></div>
+                <div><dt>Endereço</dt><dd>Rua Duartina, 109 — Maringá — PR, CEP 87080-440</dd></div>
+            </dl>
+        </article>
+
+        <article class="glass secao" id="alteracoes">
+            <h2><span>13.</span>Alterações neste aviso</h2>
+            <p>Podemos atualizar este aviso para refletir mudanças no AgroCore ou na legislação. A versão e a data de vigência ficam sempre no topo da página. Quando houver mudança relevante, o novo texto será apresentado no próximo acesso ao sistema, para a sua ciência.</p>
+        </article>
+    </div>
+</div>
+</div>
+</main>
+
+<footer>
+    <div class="fl">🌾 AgroCore ERP</div>
+    <p>Sistema de Gestão do Agronegócio com Inteligência Artificial</p>
+    <p><a href="mailto:agrosoftsistemas@gmail.com">agrosoftsistemas@gmail.com</a></p>
+    <div class="footer-links">
+        <a href="index.html">Início</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="privacidade.html">Aviso de Privacidade</a>
+        <a href="sobre.html#contato">Contato</a>
+    </div>
+    <p style="margin-top:16px; opacity:.35; font-size:12px;">© 2026 AgroCore ERP · Agrosoft Tecnologia Ltda. · Todos os direitos reservados · <a href="https://www.agrocore.ia.br" style="color:rgba(255,255,255,.35);">www.agrocore.ia.br</a></p>
+</footer>
+
+<script>
+if (window.lucide) lucide.createIcons();
+const navLinks = document.getElementById('navLinks');
+const hamburger = document.getElementById('hamburger');
+function setMenu(open) {
+    navLinks.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    hamburger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+}
+hamburger.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+const navbar = document.getElementById('navbar');
+const onScroll = () => navbar.classList.toggle('scrolled', scrollY > 60);
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+</body>
+</html>
